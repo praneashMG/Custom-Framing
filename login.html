@@ -1,0 +1,438 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Custom Framing & Art Conservation Studio</title>
+    <link rel="icon" href="assets/favicon.png" type="image/jpeg">
+    <link rel="icon" href="assets/favicon.png" type="image/jpeg">
+    <meta name="description" content="Login to your account - Custom Framing & Art Conservation Studio">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================
+           THEME VARIABLES â€“ CLASSIC GOLD & CHARCOAL (exactly from index.html)
+        ========================= */
+        :root,
+        html[data-theme='light'] {
+            --color-background: #F8F6F2;
+            --color-primary-text: #2D2D2D;
+            --color-secondary-text: #4A4A4A;
+            --color-accent: #B08D57;
+            --color-primary: #B08D57;
+            --color-secondary: #2D2D2D;
+            --color-border: #E0DCD3;
+            --color-hover: #F0EBE1;
+            --color-footer-bg: #2D2D2D;
+            --color-footer-text: #F8F6F2;
+            --color-card-bg: #FFFFFF;
+        }
+
+        html[data-theme='dark'] {
+            --color-background: #121212;
+            --color-primary-text: #EAEAEA;
+            --color-secondary-text: #B3B3B3;
+            --color-accent: #D4AF37;
+            --color-primary: #D4AF37;
+            --color-secondary: #EAEAEA;
+            --color-border: #333333;
+            --color-hover: #1A1A1A;
+            --color-footer-bg: #0A0A0A;
+            --color-footer-text: #EAEAEA;
+            --color-card-bg: #1E1E1E;
+        }
+
+        * {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--color-background) 0%, var(--color-hover) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        /* Auth Card Styles - same dimensions as old login */
+        .auth-card {
+            transition: all 0.3s ease;
+            background: var(--color-card-bg);
+        }
+
+        .input-field {
+            transition: all 0.2s ease;
+            background: var(--color-card-bg);
+            border-color: var(--color-border);
+            color: var(--color-primary-text);
+        }
+
+        .input-field:focus {
+            ring: 2px solid var(--color-accent);
+            border-color: var(--color-accent);
+            outline: none;
+        }
+
+        .input-field::placeholder {
+            color: var(--color-secondary-text);
+            opacity: 0.6;
+        }
+
+        .btn-primary-custom {
+            background: var(--color-accent);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--color-primary);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px -5px rgba(176,141,87,0.3);
+        }
+
+        /* Floating Controls - matching old login positioning */
+        .controls {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 50;
+        }
+
+        html[dir="rtl"] .controls {
+            right: auto;
+            left: 1rem;
+        }
+
+        .btn-control {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--color-primary-text);
+        }
+
+        .btn-control:hover {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+            transform: scale(1.05);
+        }
+
+        /* Social Buttons */
+        .social-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 1px solid var(--color-border);
+            background: var(--color-card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--color-secondary-text);
+        }
+
+        .social-btn:hover {
+            background: var(--color-hover);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive adjustments - same as old login */
+        @media (max-width: 768px) {
+            body {
+                padding: 0.75rem;
+            }
+            .auth-card {
+                border-radius: 1.5rem;
+            }
+            .controls {
+                top: 0.75rem;
+                right: 0.75rem;
+            }
+        }
+
+        /* Custom checkbox styling */
+        .custom-checkbox:checked {
+            background-color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        .custom-checkbox:focus {
+            ring-color: var(--color-accent);
+        }
+    </style>
+</head>
+
+<body class="transition-colors duration-300">
+
+    <!-- Floating Controls - same as old login structure -->
+    <div class="controls">
+        <button onclick="toggleRTL()" class="btn-control" title="Toggle RTL">
+            <i class="fas fa-exchange-alt"></i>
+        </button>
+        <button onclick="toggleTheme()" class="btn-control" title="Toggle Dark Mode">
+            <i class="fas fa-moon dark-icon"></i>
+            <i class="fas fa-sun light-icon hidden"></i>
+        </button>
+    </div>
+
+    <div class="relative w-full max-w-5xl">
+        <div class="auth-card w-full flex flex-col md:flex-row rounded-3xl overflow-hidden shadow-2xl">
+            
+            <!-- Left Side - Brand Section with index.html styling -->
+            <div class="hidden md:flex md:w-5/12 relative p-8 flex-col justify-between bg-cover bg-center"
+                 style="background-image: url('assets/Custom Framing.jpg'); background-position: 40% 20%;">
+                 
+                <div class="absolute inset-0 bg-black/60"></div>
+                <div class="absolute inset-0 opacity-20">
+                    <i class="fas fa-palette text-8xl absolute bottom-4 right-4 text-accent"></i>
+                    <i class="fas fa-paintbrush text-6xl absolute top-10 left-4 text-accent"></i>
+                </div>
+                
+                <div class="relative z-10">
+                    <!-- Logo - EXACT same as index.html -->
+                    <a href="index.html" class="text-2xl sm:text-3xl font-serif font-bold tracking-tight mb-8 block" style="color: var(--color-accent);">Art & Frame</a>
+                    
+                    <div class="mt-12">
+                        <h2 class="text-3xl font-semibold text-white leading-tight mb-4 font-serif">
+                            Welcome Back<br>to Our Studio
+                        </h2>
+                        <p class="text-white/80 text-sm">
+                            Access your custom framing projects, conservation requests, and gallery curator dashboard.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative z-10 mt-12">
+                    <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20">
+                        <i class="fas fa-quote-left text-white/50 text-sm mb-2"></i>
+                        <p class="italic text-sm text-white/90">"The craftsmanship and archival attention to detail is truly unparalleled. Our most treasured artworks are in expert hands."</p>
+                        <p class="text-xs text-white/70 mt-3">â€” Eleanor V., Gallery Curator</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Login Form (exact same dimensions as old login) -->
+            <div class="w-full md:w-7/12 flex items-center justify-center p-4 sm:p-8 lg:p-12" style="background: var(--color-card-bg);">
+                <div class="w-full max-w-sm">
+                    
+                    <!-- Mobile Logo -->
+                    <div class="md:hidden text-center mb-5">
+                        <a href="index.html" class="text-2xl sm:text-3xl font-serif font-bold tracking-tight" style="color: var(--color-accent);">Art & Frame</a>
+                    </div>
+
+                    <div class="mb-4 sm:mb-8 text-center">
+                        <h3 class="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2" style="color: var(--color-primary-text);">
+                            Welcome Back
+                        </h3>
+                        <div class="w-12 h-0.5 mx-auto rounded-full mb-2" style="background-color: var(--color-accent);"></div>
+                        <p class="text-[13px]" style="color: var(--color-secondary-text);">
+                            Login to access your studio profile
+                        </p>
+                    </div>
+
+                    <!-- Social Login Options -->
+                    <div class="flex justify-center gap-4 mb-6">
+                        <button class="social-btn">
+                            <svg class="w-5 h-5" viewBox="0 0 48 48">
+                                <path fill="#EA4335" d="M24 9.5c3.2 0 6.1 1.1 8.3 3.1l6.2-6.2C34.8 2.4 29.7 0 24 0 14.6 0 6.6 5.5 2.7 13.4l7.3 5.7C11.9 13.1 17.4 9.5 24 9.5z"/>
+                                <path fill="#34A853" d="M46.1 24.5c0-1.7-.2-3.3-.5-4.9H24v9.3h12.4c-.5 2.9-2.1 5.4-4.5 7.1l6.9 5.4c4-3.7 6.3-9.1 6.3-16.9z"/>
+                                <path fill="#4A90E2" d="M10 28.7c-.5-1.4-.8-2.9-.8-4.4s.3-3 .8-4.4l-7.3-5.7C1 17.1 0 20.4 0 24s1 6.9 2.7 9.8l7.3-5.7z"/>
+                                <path fill="#FBBC05" d="M24 48c6.5 0 11.9-2.1 15.8-5.7l-6.9-5.4c-2 1.3-4.6 2.1-8.9 2.1-6.6 0-12.1-3.6-14.1-8.6l-7.3 5.7C6.6 42.5 14.6 48 24 48z"/>
+                            </svg>
+                        </button>
+                        <button class="social-btn">
+                            <i class="fa-brands fa-apple text-xl"></i>
+                        </button>
+                        <button class="social-btn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 12a10 10 0 10-11.5 9.88v-7H8v-2.88h2.5V9.5c0-2.46 1.47-3.82 3.72-3.82 1.08 0 2.2.2 2.2.2v2.4h-1.24c-1.22 0-1.6.76-1.6 1.54v1.85H16l-.4 2.88h-2.18v7A10 10 0 0022 12z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="flex-1 h-px" style="background: var(--color-border);"></div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--color-secondary-text);">OR</span>
+                        <div class="flex-1 h-px" style="background: var(--color-border);"></div>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form class="space-y-2 sm:space-y-5" onsubmit="event.preventDefault(); handleLogin();">
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase tracking-wider mb-1.5" style="color: var(--color-secondary-text);">
+                                Email Address
+                            </label>
+                            <input type="email" id="loginEmail" required
+                                class="input-field border w-full px-4 py-2.5 rounded-xl text-sm outline-none focus:ring-2 transition"
+                                style="border-color: var(--color-border); background: var(--color-card-bg); color: var(--color-primary-text);"
+                                placeholder="name@artstudio.com">
+                        </div>
+
+                        <div>
+                            <label class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider mb-1.5" style="color: var(--color-primary-text);">
+                                <i class="fas fa-key" style="color: var(--color-accent);"></i> PASSWORD
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="password" required
+                                    class="input-field border w-full px-4 py-2.5 rounded-xl text-sm outline-none focus:ring-2 transition pr-10"
+                                    style="border-color: var(--color-border); background: var(--color-card-bg); color: var(--color-primary-text);"
+                                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢">
+                                <button type="button" onclick="togglePasswordVisibility('password', this)"
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center transition"
+                                    style="color: var(--color-secondary-text);">
+                                    <svg class="w-5 h-5 eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
+                                    <svg class="w-5 h-5 eye-slash-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="flex justify-between items-center mt-3">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border transition custom-checkbox"
+                                           style="border-color: var(--color-border); accent-color: var(--color-accent);">
+                                    <span class="text-xs" style="color: var(--color-secondary-text);">Remember me</span>
+                                </label>
+                                <a href="#" class="text-xs font-semibold hover:underline transition" style="color: var(--color-accent);">Forgot password?</a>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="btn-primary-custom w-full py-3 rounded-xl text-white font-bold text-sm shadow-lg mt-1 transition-transform active:scale-95"
+                            style="background: var(--color-accent);">
+                            <i class="fas fa-sign-in-alt mr-2 text-xs"></i>
+                            Login to Dashboard
+                        </button>
+                    </form>
+
+                    <p class="text-[11px] mt-4 text-center" style="color: var(--color-secondary-text);">
+                        Don't have an account? 
+                        <a href="signup.html" class="font-bold hover:underline transition" style="color: var(--color-accent);">Create an account</a>
+                    </p>
+
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Theme Toggle - works with index.html theme system
+        const htmlEl = document.documentElement;
+            function toggleTheme() {
+            const currentTheme = htmlEl.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('frame_theme', newTheme);
+            
+            // Update icons
+            const lightIcons = document.querySelectorAll('.light-icon');
+            const darkIcons = document.querySelectorAll('.dark-icon');
+            if (newTheme === 'dark') {
+                lightIcons.forEach(icon => icon.classList.add('hidden'));
+                darkIcons.forEach(icon => icon.classList.remove('hidden'));
+            } else {
+                lightIcons.forEach(icon => icon.classList.remove('hidden'));
+                darkIcons.forEach(icon => icon.classList.add('hidden'));
+            }
+        }
+        
+        // RTL Toggle
+        const bodyEl = document.body;
+        
+        function toggleRTL() {
+            const currentDir = bodyEl.getAttribute('dir') || 'ltr';
+            bodyEl.setAttribute('dir', currentDir === 'ltr' ? 'rtl' : 'ltr');
+            localStorage.setItem('frame_dir', bodyEl.getAttribute('dir'));
+        }
+        
+        // Password Visibility
+        function togglePasswordVisibility(inputId, buttonEl) {
+            const input = document.getElementById(inputId);
+            const eyeIcon = buttonEl.querySelector('.eye-icon');
+            const eyeSlashIcon = buttonEl.querySelector('.eye-slash-icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                eyeIcon.classList.add('hidden');
+                eyeSlashIcon.classList.remove('hidden');
+            } else {
+                input.type = 'password';
+                eyeIcon.classList.remove('hidden');
+                eyeSlashIcon.classList.add('hidden');
+            }
+        }
+        
+        // Handle Login
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            if (!email) {
+                alert("Please enter your email address.");
+                return;
+            }
+            // Demo login - redirect to user dashboard
+            window.location.href = 'user.html';
+        }
+        
+        // Initialize theme from localStorage (matching index.html pattern)
+        const savedTheme = localStorage.getItem('frame_theme');
+        if (savedTheme === 'dark') {
+            htmlEl.setAttribute('data-theme', 'dark');
+            document.querySelectorAll('.light-icon').forEach(icon => icon.classList.add('hidden'));
+            document.querySelectorAll('.dark-icon').forEach(icon => icon.classList.remove('hidden'));
+        } else if (savedTheme === 'light') {
+            htmlEl.setAttribute('data-theme', 'light');
+            document.querySelectorAll('.light-icon').forEach(icon => icon.classList.remove('hidden'));
+            document.querySelectorAll('.dark-icon').forEach(icon => icon.classList.add('hidden'));
+        } else {
+            // Check system preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                htmlEl.setAttribute('data-theme', 'dark');
+                document.querySelectorAll('.light-icon').forEach(icon => icon.classList.add('hidden'));
+                document.querySelectorAll('.dark-icon').forEach(icon => icon.classList.remove('hidden'));
+            }
+        }
+        
+        // Initialize RTL from localStorage
+        const savedDir = localStorage.getItem('frame_dir');
+        if (savedDir === 'rtl') {
+            bodyEl.setAttribute('dir', 'rtl');
+        }
+        
+        // Update icon states on load
+        const currentTheme = htmlEl.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            const lightIcons = document.querySelectorAll('.light-icon');
+            const darkIcons = document.querySelectorAll('.dark-icon');
+            lightIcons.forEach(icon => icon.classList.add('hidden'));
+            darkIcons.forEach(icon => icon.classList.remove('hidden'));
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
