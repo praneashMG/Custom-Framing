@@ -35,14 +35,14 @@
             --color-background: #121212;
             --color-primary-text: #EAEAEA;
             --color-secondary-text: #B3B3B3;
-            --color-accent: #D4AF37;
-            --color-primary: #D4AF37;
+            --color-accent: #B08D57; /* Consistently use the same brand gold color as light mode */
+            --color-primary: #B08D57; /* Consistently use the same brand gold color as light mode */
             --color-secondary: #EAEAEA;
             --color-border: #333333;
-            --color-hover: #1A1A1A;
+            --color-hover: #222222;    /* Alternating section background - clearly separated dark grey */
             --color-footer-bg: #0A0A0A;
             --color-footer-text: #EAEAEA;
-            --color-card-bg: #1E1E1E;
+            --color-card-bg: #1A1A1A;   /* Card background - elevated above page background */
         }
 
         html,
@@ -347,27 +347,32 @@
 
         .btn-primary {
             background-color: var(--color-primary);
-            color: var(--color-background);
-            transition: all 0.3s;
+            color: var(--color-background) !important;
+            border: 2px solid var(--color-primary);
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            border-color: white;
-            background-color: var(--color-accent);
-            color: var(--color-background);
-            box-shadow: 0 0 20px rgba(192, 57, 43, 0.4);
+            background-color: var(--color-secondary);
+            border-color: var(--color-secondary);
+            color: var(--color-background) !important;
+            box-shadow: 0 10px 20px -5px rgba(176, 141, 87, 0.4);
+            transform: translateY(-2px);
         }
 
         .btn-accent {
-            background-color: var(--color-accent);
-            color: var(--color-background);
-            transition: all 0.3s;
+            background-color: transparent;
+            color: var(--color-accent) !important;
+            border: 2px solid var(--color-accent);
+            transition: all 0.3s ease;
         }
 
         .btn-accent:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-background);
-            box-shadow: 0 0 20px rgba(230, 126, 34, 0.4);
+            background-color: var(--color-accent);
+            color: var(--color-background) !important;
+            border-color: var(--color-accent);
+            box-shadow: 0 10px 20px -5px rgba(176, 141, 87, 0.3);
+            transform: translateY(-2px);
         }
 
         .reveal {
@@ -448,18 +453,24 @@
                 justify-items: center;
             }
         }
+    
+        /* RTL Dropdown alignment override */
+        html[dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
     </style>
 </head>
 
 <body class="antialiased">
-    <header class="fixed top-3 left-0 w-full z-50" id="main-header">
+    <header class="fixed top-3 left-0 w-full z-50 px-4 sm:px-6" id="main-header">
         <nav class="mx-auto max-w-[1200px] px-4 sm:px-3 lg:px-4 py-3 flex items-center justify-between h-16 rounded-full shadow-xl border border-border bg-card-bg"
             style="background-color: var(--color-card-bg);">
             <a href="index.html" class="text-2xl sm:text-3xl font-serif font-bold text-accent shrink-0">Art & Frame</a>
 
             <!-- Desktop Navigation (Centered) -->
             <div class="hidden xl:flex items-center justify-center flex-1 px-8">
-                <div class="flex space-x-6 text-primary-text font-medium">
+                <div class="flex space-x-6 rtl:space-x-reverse text-primary-text font-medium">
                     <div class="dropdown-wrapper home-link-gap">
                         <button class="nav-link flex items-center dropdown-toggle">Home <svg
                                 class="w-3 h-3 ml-1.5 transition-transform" fill="none" stroke="currentColor"
@@ -482,7 +493,7 @@
             </div>
 
             <!-- Right Actions (Icons) -->
-            <div class="hidden xl:flex items-center space-x-4 shrink-0">
+            <div class="hidden xl:flex items-center space-x-4 rtl:space-x-reverse shrink-0">
                 <!-- USER DROPDOWN (Human Icon) -->
                 <div class="dropdown-wrapper" id="user-dropdown">
                     <button
@@ -538,7 +549,7 @@
         <div id="drawer-content"
             class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[80vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
             <div class="flex justify-between items-center pb-4 border-b border-border">
-                <h3 class="text-2xl sm:text-2xl sm:text-3xl font-serif font-semibold text-accent">Art & Frame</h3> <button
+                <h3 class="text-2xl sm:text-3xl font-serif font-medium text-accent">Art & Frame</h3> <button
                     id="mobile-menu-close" class="text-primary hover:text-accent p-1.5 rounded-full"><svg
                         class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
@@ -630,7 +641,7 @@
         <span class="text-accent text-xs font-bold uppercase tracking-widest bg-hover border border-border px-4 py-1.5 rounded-full inline-block mb-6">
             <i class="fa-solid fa-headset text-xs mr-1 text-accent"></i> Client Services
         </span>
-        <h1 class="text-4xl sm:text-6xl font-serif font-semibold text-primary-text tracking-tight max-w-4xl mx-auto mb-6 leading-[1.15]">
+        <h1 class="text-4xl sm:text-6xl font-serif font-medium text-primary-text tracking-tight max-w-4xl mx-auto mb-6 leading-[1.15]">
             Contact Our Studio
         </h1>
         <p class="text-base sm:text-lg text-secondary-text max-w-2xl mx-auto leading-relaxed">
@@ -648,24 +659,24 @@
                 <div class="w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center text-accent text-xl mb-4 shadow-sm">
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
-                <h4 class="text-xs font-semibold uppercase tracking-wider text-primary-text mb-2">Studio Location</h4>
-                <p class="text-sm text-secondary-text">124 Heritage Plaza, Suite 400<br>Historic District, AR 72701</p>
+                <h4 class="text-xs font-medium uppercase tracking-wider text-primary-text mb-2">Studio Location</h4>
+                <p class="max-w-3xl text-sm text-secondary-text">124 Heritage Plaza, Suite 400<br>Historic District, AR 72701</p>
             </div>
 
             <div class="flex flex-col items-center text-center reveal" style="transition-delay: 100ms;">
                 <div class="w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center text-accent text-xl mb-4 shadow-sm">
                     <i class="fa-solid fa-envelope"></i>
                 </div>
-                <h4 class="text-xs font-semibold uppercase tracking-wider text-primary-text mb-2">Email Address</h4>
-                <p class="text-sm text-secondary-text"><a href="mailto:info@artrestore.studio" class="hover:text-accent transition">info@artrestore.studio</a></p>
+                <h4 class="text-xs font-medium uppercase tracking-wider text-primary-text mb-2">Email Address</h4>
+                <p class="max-w-3xl text-sm text-secondary-text"><a href="mailto:info@artrestore.studio" class="hover:text-accent transition">info@artrestore.studio</a></p>
             </div>
 
             <div class="flex flex-col items-center text-center reveal" style="transition-delay: 200ms;">
                 <div class="w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center text-accent text-xl mb-4 shadow-sm">
                     <i class="fa-solid fa-phone"></i>
                 </div>
-                <h4 class="text-xs font-semibold uppercase tracking-wider text-primary-text mb-2">Direct Phone Line</h4>
-                <p class="text-sm text-secondary-text"><a href="tel:#" class="hover:text-accent transition">1-800-ART-FRAME</a></p>
+                <h4 class="text-xs font-medium uppercase tracking-wider text-primary-text mb-2">Direct Phone Line</h4>
+                <p class="max-w-3xl text-sm text-secondary-text"><a href="tel:#" class="hover:text-accent transition">1-800-ART-FRAME</a></p>
             </div>
 
         </div>
@@ -682,18 +693,18 @@
             </div>
             
             <div class="lg:col-span-7">
-                <h2 class="text-3xl sm:text-5xl font-serif font-semibold text-primary-text mb-6">Studio Visit Policy</h2>
+                <h2 class="text-3xl sm:text-5xl font-serif font-medium text-primary-text mb-6">Studio Visit Policy</h2>
                 <div class="space-y-6 text-secondary-text leading-relaxed text-sm">
-                    <p>
+                    <p class="max-w-3xl">
                         We operate on a strictly private, appointment-only basis to ensure complete focus on our active framing and preservation projects, and to give each client our undivided attention during their consultation.
                     </p>
-                    <p>
+                    <p class="max-w-3xl">
                         If you are delivering a piece for custom framing or restoration, please schedule an appointment. We will discuss your artwork's specific needs, explore framing options, and provide a detailed estimate.
                     </p>
                     <div class="pt-6 border-t border-border">
-                        <h4 class="font-semibold text-primary-text mb-2 text-xs uppercase tracking-wider">Studio Hours</h4>
-                        <p>Tuesday - Saturday: 09:00 AM - 05:00 PM</p>
-                        <p>Sundays & Mondays: Studio closed</p>
+                        <h4 class="font-medium text-primary-text mb-2 text-xs uppercase tracking-wider">Studio Hours</h4>
+                        <p class="max-w-3xl">Tuesday - Saturday: 09:00 AM - 05:00 PM</p>
+                        <p class="max-w-3xl">Sundays & Mondays: Studio closed</p>
                     </div>
                 </div>
             </div>
@@ -709,8 +720,8 @@
             
             <div class="lg:col-span-5">
                 <span class="text-accent text-xs font-bold uppercase tracking-wider block mb-2">Private Studio Appointments</span>
-                <h2 class="text-3xl sm:text-5xl font-serif font-semibold text-primary-text mb-4">Request A Consultation</h2>
-                <p class="text-secondary-text text-sm leading-relaxed mb-6">
+                <h2 class="text-3xl sm:text-5xl font-serif font-medium text-primary-text mb-4">Request A Consultation</h2>
+                <p class="max-w-3xl text-secondary-text text-sm leading-relaxed mb-6">
                     Use this form to tell us about the piece you'd like framed or restored. Our team will respond within 48 hours to schedule your consultation.
                 </p>
                 <div class="h-32 w-full rounded-lg overflow-hidden shadow-sm mb-4 hidden sm:block border border-border">
@@ -747,7 +758,7 @@
 <!-- SECTION 5: GEOGRAPHIC REACH (Static Visual Map Placeholder) -->
 <section class="py-20 bg-background transition-colors duration-300">
     <div class="container mx-auto px-6 max-w-6xl text-center mb-16">
-        <h2 class="text-3xl font-serif font-semibold text-primary-text mb-4">Regional Studio Outreach</h2>
+        <h2 class="text-3xl sm:text-5xl font-serif font-medium text-primary-text mb-4">Regional Studio Outreach</h2>
         <div class="h-0.5 w-16 bg-accent mx-auto rounded-full"></div>
     </div>
     
@@ -763,16 +774,16 @@
 <!-- SECTION 6: FAQ DISPATCH (Clean Linear Question/Answer Stack) -->
 <section class="py-24 bg-hover border-t border-border">
     <div class="container mx-auto px-6 max-w-4xl">
-        <h2 class="text-3xl font-serif font-semibold text-primary-text mb-12 text-center">Frequently Asked Questions</h2>
+        <h2 class="text-3xl sm:text-5xl font-serif font-medium text-primary-text mb-12 text-center">Frequently Asked Questions</h2>
         
         <div class="space-y-6">
             <div class="p-6 bg-card-bg border border-border rounded-xl reveal">
-                <h4 class="font-semibold text-primary-text mb-2">How long does custom framing typically take?</h4>
-                <p class="text-sm text-secondary-text">Our standard turnaround time for custom framing is typically 2-3 weeks, depending on the complexity and material availability.</p>
+                <h4 class="font-medium text-primary-text mb-2">How long does custom framing typically take?</h4>
+                <p class="max-w-3xl text-sm text-secondary-text">Our standard turnaround time for custom framing is typically 2-3 weeks, depending on the complexity and material availability.</p>
             </div>
             <div class="p-6 bg-card-bg border border-border rounded-xl reveal" style="transition-delay: 100ms;">
-                <h4 class="font-semibold text-primary-text mb-2">Do you provide restoration estimates?</h4>
-                <p class="text-sm text-secondary-text">Yes, we provide detailed restoration estimates after evaluating the piece during a private consultation at our studio.</p>
+                <h4 class="font-medium text-primary-text mb-2">Do you provide restoration estimates?</h4>
+                <p class="max-w-3xl text-sm text-secondary-text">Yes, we provide detailed restoration estimates after evaluating the piece during a private consultation at our studio.</p>
             </div>
         </div>
     </div>
@@ -785,7 +796,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8 pb-10 border-b border-slate-700">
                 <div class="col-span-2 md:col-span-2">
-                    <h3 class="text-2xl sm:text-2xl sm:text-3xl font-serif font-semibold mb-4 text-accent">Art & Frame</h3>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-medium mb-4 text-accent">Art & Frame</h3>
                     <p class="text-sm leading-relaxed max-w-xs text-white">Preserving and protecting your treasured artworks with museum-quality custom framing and expert art conservation services.</p>
                     <div class="flex space-x-4 rtl:space-x-reverse mt-6">
                         <a href="#" class="text-slate-300 hover:text-accent transition"><i
@@ -797,7 +808,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4 text-accent">Services</h4>
+                    <h4 class="text-lg font-medium mb-4 text-accent">Services</h4>
                     <ul class="space-y-2">
                         <li><a href="#" class="footer-link">Custom Framing</a></li>
                         <li><a href="#" class="footer-link">Art Conservation</a></li>
@@ -806,7 +817,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4 text-accent">Quick Links</h4>
+                    <h4 class="text-lg font-medium mb-4 text-accent">Quick Links</h4>
                     <ul class="space-y-2">
                         <li><a href="index.html" class="footer-link">Home</a></li>
                         <li><a href="services.html" class="footer-link">Services</a></li>
@@ -815,8 +826,8 @@
                     </ul>
                 </div>
                 <div class="col-span-2 md:col-span-2 lg:col-span-1">
-                    <h4 class="font-semibold text-lg mb-4 text-accent">Newsletter</h4>
-                    <p class="text-sm mb-4 text-white">Get art preservation tips & studio news.</p>
+                    <h4 class="font-medium text-lg mb-4 text-accent">Newsletter</h4>
+                    <p class="max-w-3xl text-sm mb-4 text-white">Get art preservation tips & studio news.</p>
                     <input type="email" placeholder="Your email"
                         class="p-3 text-sm rounded-lg w-full bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-accent text-white">
                     <button class="btn-accent font-semibold py-3 rounded-lg w-full mt-3">Subscribe</button>

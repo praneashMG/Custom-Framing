@@ -36,14 +36,14 @@
             --color-background: #121212;
             --color-primary-text: #EAEAEA;
             --color-secondary-text: #B3B3B3;
-            --color-accent: #D4AF37;
-            --color-primary: #D4AF37;
+            --color-accent: #B08D57; /* Consistently use the same brand gold color as light mode */
+            --color-primary: #B08D57; /* Consistently use the same brand gold color as light mode */
             --color-secondary: #EAEAEA;
             --color-border: #333333;
-            --color-hover: #1A1A1A;
+            --color-hover: #222222;    /* Alternating section background - clearly separated dark grey */
             --color-footer-bg: #0A0A0A;
             --color-footer-text: #EAEAEA;
-            --color-card-bg: #1E1E1E;
+            --color-card-bg: #1A1A1A;   /* Card background - elevated above page background */
         }
 
         * {
@@ -87,11 +87,15 @@
 
         .btn-primary-custom {
             background: var(--color-accent);
+            color: var(--color-background) !important;
             transition: all 0.3s ease;
+            border: 2px solid var(--color-accent);
         }
 
         .btn-primary-custom:hover {
-            background: var(--color-primary);
+            background: var(--color-secondary);
+            border-color: var(--color-secondary);
+            color: var(--color-background) !important;
             transform: translateY(-1px);
             box-shadow: 0 10px 20px -5px rgba(176,141,87,0.3);
         }
@@ -177,6 +181,12 @@
         .custom-checkbox:focus {
             ring-color: var(--color-accent);
         }
+    
+        /* RTL Dropdown alignment override */
+        html[dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
     </style>
 </head>
 
@@ -211,10 +221,10 @@
                     <a href="index.html" class="text-2xl sm:text-3xl font-serif font-bold tracking-tight mb-8 block" style="color: var(--color-accent);">Art & Frame</a>
                     
                     <div class="mt-12">
-                        <h2 class="text-3xl font-semibold text-white leading-tight mb-4 font-serif">
+                        <h2 class="text-3xl sm:text-5xl font-medium text-white leading-tight mb-4 font-serif">
                             Welcome Back<br>to Our Studio
                         </h2>
-                        <p class="text-white/80 text-sm">
+                        <p class="max-w-3xl text-white/80 text-sm">
                             Access your custom framing projects, conservation requests, and gallery curator dashboard.
                         </p>
                     </div>
@@ -223,8 +233,8 @@
                 <div class="relative z-10 mt-12">
                     <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20">
                         <i class="fas fa-quote-left text-white/50 text-sm mb-2"></i>
-                        <p class="italic text-sm text-white/90">"The craftsmanship and archival attention to detail is truly unparalleled. Our most treasured artworks are in expert hands."</p>
-                        <p class="text-xs text-white/70 mt-3">- Eleanor V., Gallery Curator</p>
+                        <p class="max-w-3xl italic text-sm text-white/90">"The craftsmanship and archival attention to detail is truly unparalleled. Our most treasured artworks are in expert hands."</p>
+                        <p class="max-w-3xl text-xs text-white/70 mt-3">- Eleanor V., Gallery Curator</p>
                     </div>
                 </div>
             </div>
@@ -239,11 +249,11 @@
                     </div>
 
                     <div class="mb-4 sm:mb-8 text-center">
-                        <h3 class="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2" style="color: var(--color-primary-text);">
+                        <h3 class="text-2xl sm:text-3xl text-lg font-medium mb-1 sm:mb-2" style="color: var(--color-primary-text);">
                             Welcome Back
                         </h3>
                         <div class="w-12 h-0.5 mx-auto rounded-full mb-2" style="background-color: var(--color-accent);"></div>
-                        <p class="text-[13px]" style="color: var(--color-secondary-text);">
+                        <p class="max-w-3xl text-[13px]" style="color: var(--color-secondary-text);">
                             Login to access your studio profile
                         </p>
                     </div>
@@ -319,14 +329,14 @@
                         </div>
 
                         <button type="submit"
-                            class="btn-primary-custom w-full py-3 rounded-xl text-white font-bold text-sm shadow-lg mt-1 transition-transform active:scale-95"
+                            class="btn-primary-custom w-full py-3 rounded-xl  font-bold text-sm shadow-lg mt-1 transition-transform active:scale-95"
                             style="background: var(--color-accent);">
                             <i class="fas fa-sign-in-alt mr-2 text-xs"></i>
                             Login to Dashboard
                         </button>
                     </form>
 
-                    <p class="text-[11px] mt-4 text-center" style="color: var(--color-secondary-text);">
+                    <p class="max-w-3xl text-[11px] mt-4 text-center" style="color: var(--color-secondary-text);">
                         Don't have an account? 
                         <a href="signup.html" class="font-bold hover:underline transition" style="color: var(--color-accent);">Create an account</a>
                     </p>

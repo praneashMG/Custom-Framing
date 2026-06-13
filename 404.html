@@ -33,14 +33,14 @@
             --color-background: #121212;
             --color-primary-text: #EAEAEA;
             --color-secondary-text: #B3B3B3;
-            --color-accent: #D4AF37;
-            --color-primary: #D4AF37;
+            --color-accent: #B08D57; /* Consistently use the same brand gold color as light mode */
+            --color-primary: #B08D57; /* Consistently use the same brand gold color as light mode */
             --color-secondary: #EAEAEA;
             --color-border: #333333;
-            --color-hover: #1A1A1A;
+            --color-hover: #222222;    /* Alternating section background - clearly separated dark grey */
             --color-footer-bg: #0A0A0A;
             --color-footer-text: #EAEAEA;
-            --color-card-bg: #1E1E1E;
+            --color-card-bg: #1A1A1A;   /* Card background - elevated above page background */
         }
 
         html,
@@ -64,14 +64,17 @@
 
         .btn-primary {
             background-color: var(--color-primary);
-            color: var(--color-background);
-            transition: all 0.3s;
+            color: var(--color-background) !important;
+            border: 2px solid var(--color-primary);
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            background-color: var(--color-accent);
-            color: var(--color-background);
-            box-shadow: 0 0 20px rgba(192, 57, 43, 0.4);
+            background-color: var(--color-secondary);
+            border-color: var(--color-secondary);
+            color: var(--color-background) !important;
+            box-shadow: 0 10px 20px -5px rgba(176, 141, 87, 0.4);
+            transform: translateY(-2px);
         }
 
         .particle-bg {
@@ -96,6 +99,12 @@
             0%, 100% { transform: translateY(0) translateX(0); }
             50% { transform: translateY(-20px) translateX(10px); }
         }
+    
+        /* RTL Dropdown alignment override */
+        html[dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
     </style>
 </head>
 
@@ -105,10 +114,10 @@
         <div id="particles" class="particle-bg"></div>
         
         <div class="container mx-auto px-6 relative z-10 text-center max-w-3xl">
-            <h1 class="text-8xl sm:text-[10rem] font-serif font-semibold text-accent tracking-tighter mb-4 leading-none">
+            <h1 class="text-8xl sm:text-[10rem] font-serif font-medium text-accent tracking-tighter mb-4 leading-none">
                 404
             </h1>
-            <h2 class="text-3xl sm:text-3xl sm:text-5xl font-serif font-semibold text-primary-text mb-6">
+            <h2 class="text-3xl sm:text-5xl sm: font-serif font-medium text-primary-text mb-6">
                 Page Not Found
             </h2>
             <p class="text-base sm:text-lg text-secondary-text max-w-lg mx-auto mb-10 leading-relaxed">

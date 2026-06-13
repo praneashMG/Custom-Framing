@@ -35,14 +35,14 @@
             --color-background: #121212;
             --color-primary-text: #EAEAEA;
             --color-secondary-text: #B3B3B3;
-            --color-accent: #D4AF37;
-            --color-primary: #D4AF37;
+            --color-accent: #B08D57; /* Consistently use the same brand gold color as light mode */
+            --color-primary: #B08D57; /* Consistently use the same brand gold color as light mode */
             --color-secondary: #EAEAEA;
             --color-border: #333333;
-            --color-hover: #1A1A1A;
+            --color-hover: #222222;    /* Alternating section background - clearly separated dark grey */
             --color-footer-bg: #0A0A0A;
             --color-footer-text: #EAEAEA;
-            --color-card-bg: #1E1E1E;
+            --color-card-bg: #1A1A1A;   /* Card background - elevated above page background */
         }
 
         html,
@@ -347,27 +347,32 @@
 
         .btn-primary {
             background-color: var(--color-primary);
-            color: var(--color-background);
-            transition: all 0.3s;
+            color: var(--color-background) !important;
+            border: 2px solid var(--color-primary);
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            border-color: white;
-            background-color: var(--color-accent);
-            color: var(--color-background);
-            box-shadow: 0 0 20px rgba(192, 57, 43, 0.4);
+            background-color: var(--color-secondary);
+            border-color: var(--color-secondary);
+            color: var(--color-background) !important;
+            box-shadow: 0 10px 20px -5px rgba(176, 141, 87, 0.4);
+            transform: translateY(-2px);
         }
 
         .btn-accent {
-            background-color: var(--color-accent);
-            color: var(--color-background);
-            transition: all 0.3s;
+            background-color: transparent;
+            color: var(--color-accent) !important;
+            border: 2px solid var(--color-accent);
+            transition: all 0.3s ease;
         }
 
         .btn-accent:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-background);
-            box-shadow: 0 0 20px rgba(230, 126, 34, 0.4);
+            background-color: var(--color-accent);
+            color: var(--color-background) !important;
+            border-color: var(--color-accent);
+            box-shadow: 0 10px 20px -5px rgba(176, 141, 87, 0.3);
+            transform: translateY(-2px);
         }
 
         .reveal {
@@ -448,18 +453,24 @@
                 justify-items: center;
             }
         }
+    
+        /* RTL Dropdown alignment override */
+        html[dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
     </style>
 </head>
 
 <body class="antialiased">
-    <header class="fixed top-3 left-0 w-full z-50" id="main-header">
+    <header class="fixed top-3 left-0 w-full z-50 px-4 sm:px-6" id="main-header">
         <nav class="mx-auto max-w-[1200px] px-4 sm:px-3 lg:px-4 py-3 flex items-center justify-between h-16 rounded-full shadow-xl border border-border bg-card-bg"
             style="background-color: var(--color-card-bg);">
             <a href="index.html" class="text-2xl sm:text-3xl font-serif font-bold text-accent shrink-0">Art & Frame</a>
 
             <!-- Desktop Navigation (Centered) -->
             <div class="hidden xl:flex items-center justify-center flex-1 px-8">
-                <div class="flex space-x-6 text-primary-text font-medium">
+                <div class="flex space-x-6 rtl:space-x-reverse text-primary-text font-medium">
                     <div class="dropdown-wrapper home-link-gap">
                         <button class="nav-link flex items-center dropdown-toggle">Home <svg
                                 class="w-3 h-3 ml-1.5 transition-transform" fill="none" stroke="currentColor"
@@ -482,7 +493,7 @@
             </div>
 
             <!-- Right Actions (Icons) -->
-            <div class="hidden xl:flex items-center space-x-4 shrink-0">
+            <div class="hidden xl:flex items-center space-x-4 rtl:space-x-reverse shrink-0">
                 <!-- USER DROPDOWN (Human Icon) -->
                 <div class="dropdown-wrapper" id="user-dropdown">
                     <button
@@ -538,7 +549,7 @@
         <div id="drawer-content"
             class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[80vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
             <div class="flex justify-between items-center pb-4 border-b border-border">
-                <h3 class="text-2xl sm:text-2xl sm:text-3xl font-serif font-semibold text-accent">Art & Frame</h3> <button
+                <h3 class="text-2xl sm:text-3xl font-serif font-medium text-accent">Art & Frame</h3> <button
                     id="mobile-menu-close" class="text-primary hover:text-accent p-1.5 rounded-full"><svg
                         class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
@@ -631,14 +642,14 @@
         <span class="text-accent text-xs font-bold uppercase tracking-widest bg-hover border border-border px-4 py-1.5 rounded-full inline-block mb-6">
             <i class="fa-solid fa-paintbrush text-xs mr-1 text-accent"></i> Museum Quality Preservation
         </span>
-        <h1 class="text-4xl sm:text-6xl font-serif font-semibold text-primary-text tracking-tight max-w-4xl mx-auto mb-6 leading-[1.15]">
+        <h1 class="text-4xl sm:text-6xl font-serif font-medium text-primary-text tracking-tight max-w-4xl mx-auto mb-6 leading-[1.15]">
             Expert Custom Framing & Fine Art Conservation
         </h1>
         <p class="text-base sm:text-lg text-secondary-text max-w-2xl mx-auto mb-10 leading-relaxed">
             Elevate your cherished artworks with our premium framing solutions. Our master conservators ensure your pieces are protected and beautifully presented for generations.
         </p>
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <a href="tel:#" class="btn-primary font-semibold px-8 py-4 rounded-xl shadow-md flex items-center gap-3 w-full sm:w-auto justify-center text-center transition-all">
+            <a href="contact.html" class="btn-primary font-semibold px-8 py-4 rounded-xl shadow-md flex items-center gap-3 w-full sm:w-auto justify-center text-center transition-all">
                 <i class="fa-solid fa-calendar-check text-base"></i> Book a Consultation
             </a>
             <a href="#services" class="btn-accent font-semibold px-8 py-4 rounded-xl shadow-md w-full sm:w-auto justify-center text-center transition-all">
@@ -659,7 +670,7 @@
                         <h3>100<span class="text-lg font-sans font-medium text-secondary"></span></h3>
                     </div>
                 </div>
-                <h4 class="text-sm font-semibold text-secondary-text uppercase tracking-wider mt-4">Archival Materials</h4>
+                <h4 class="text-sm font-medium text-secondary-text uppercase tracking-wider mt-4">Archival Materials</h4>
             </div>
 
             <div class="text-center reveal" style="transition-delay: 100ms;">
@@ -668,7 +679,7 @@
                         <h3>25<span class="text-lg font-sans font-medium text-secondary"></span></h3>
                     </div>
                 </div>
-                <h4 class="text-sm font-semibold text-secondary-text uppercase tracking-wider mt-4">Years Experience</h4>
+                <h4 class="text-sm font-medium text-secondary-text uppercase tracking-wider mt-4">Years Experience</h4>
             </div>
 
             <div class="text-center reveal" style="transition-delay: 200ms;">
@@ -677,7 +688,7 @@
                         <h3>5k<span class="text-lg font-sans font-medium text-secondary"></span></h3>
                     </div>
                 </div>
-                <h4 class="text-sm font-semibold text-secondary-text uppercase tracking-wider mt-4">Artworks Restored</h4>
+                <h4 class="text-sm font-medium text-secondary-text uppercase tracking-wider mt-4">Artworks Restored</h4>
             </div>
 
             <div class="text-center reveal" style="transition-delay: 300ms;">
@@ -686,7 +697,7 @@
                         <h3>500<span class="text-lg font-sans font-medium text-secondary"></span></h3>
                     </div>
                 </div>
-                <h4 class="text-sm font-semibold text-secondary-text uppercase tracking-wider mt-4">Frame Mouldings</h4>
+                <h4 class="text-sm font-medium text-secondary-text uppercase tracking-wider mt-4">Frame Mouldings</h4>
             </div>
 
         </div>
@@ -697,7 +708,7 @@
 <section id="services" class="py-20 bg-background transition-colors duration-300">
     <div class="container mx-auto px-6 max-w-5xl">
         <div class="text-center max-w-2xl mx-auto mb-20">
-            <h2 class="text-3xl sm:text-5xl font-serif font-semibold text-primary-text mb-4">Our Studio Services</h2>
+            <h2 class="text-3xl sm:text-5xl font-serif font-medium text-primary-text mb-4">Our Studio Services</h2>
             <div class="h-0.5 w-16 bg-accent mx-auto rounded-full"></div>
         </div>
         
@@ -709,8 +720,8 @@
                     <img src="assets/gallery_wall.png" alt="Custom Framing Selection" class="w-full max-w-md rounded-2xl shadow-xl object-cover aspect-square">
                 </div>
                 <div class="md:w-1/2 text-center md:text-left">
-                    <h3 class="text-2xl font-serif font-semibold text-primary-text mb-3">Custom Framing</h3>
-                    <p class="text-secondary-text text-lg leading-relaxed">
+                    <h3 class="text-2xl sm:text-3xl font-serif font-medium text-primary-text mb-3">Custom Framing</h3>
+                    <p class="max-w-3xl text-secondary-text text-lg leading-relaxed">
                         We offer an extensive selection of premium wood, metal, and hand-finished mouldings. Our expert team utilizes archival-grade matting, UV-filtering museum glass, and reversible mounting techniques to ensure your art is beautifully presented and fully protected against environmental damage.
                     </p>
                 </div>
@@ -722,8 +733,8 @@
                     <img src="assets/paper_conservation.png" alt="Fine Art Conservation" class="w-full max-w-md rounded-2xl shadow-xl object-cover aspect-square">
                 </div>
                 <div class="md:w-1/2 text-center md:text-right">
-                    <h3 class="text-2xl font-serif font-semibold text-primary-text mb-3">Fine Art Conservation</h3>
-                    <p class="text-secondary-text text-lg leading-relaxed">
+                    <h3 class="text-2xl sm:text-3xl font-serif font-medium text-primary-text mb-3">Fine Art Conservation</h3>
+                    <p class="max-w-3xl text-secondary-text text-lg leading-relaxed">
                         Our specialized conservators gently clean, repair, and restore aged or damaged artworks. We handle oil paintings, works on paper, and antique photographs with the utmost precision, employing museum-standard, non-invasive procedures to return pieces to their original brilliance.
                     </p>
                 </div>
@@ -735,8 +746,8 @@
                     <img src="assets/museum_shadowbox.png" alt="Canvas Stretching and Mounting" class="w-full max-w-md rounded-2xl shadow-xl object-cover aspect-square">
                 </div>
                 <div class="md:w-1/2 text-center md:text-left">
-                    <h3 class="text-2xl font-serif font-semibold text-primary-text mb-3">Canvas Stretching & Mounting</h3>
-                    <p class="text-secondary-text text-lg leading-relaxed">
+                    <h3 class="text-2xl sm:text-3xl font-serif font-medium text-primary-text mb-3">Canvas Stretching & Mounting</h3>
+                    <p class="max-w-3xl text-secondary-text text-lg leading-relaxed">
                         Whether it's a freshly painted masterpiece or a delicate vintage textile, we provide professional stretching and mounting services. We utilize heavy-duty custom strainers and acid-free substrates to guarantee perfect tension and structural integrity without compromising the fabric.
                     </p>
                 </div>
@@ -751,7 +762,7 @@
     <div class="container mx-auto px-6 max-w-6xl">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
             <div>
-                <h2 class="text-3xl sm:text-5xl font-serif font-semibold text-primary-text mb-3">Recent Gallery Additions</h2>
+                <h2 class="text-3xl sm:text-5xl font-serif font-medium text-primary-text mb-3">Recent Gallery Additions</h2>
                 <div class="h-0.5 w-12 bg-accent rounded-full"></div>
             </div>
             <a href="gallery.html" class="btn-accent px-6 py-3 rounded-xl font-semibold text-sm shadow-sm hover:shadow-md transition-all whitespace-nowrap">
@@ -766,7 +777,7 @@
                 <img src="assets/Canvas Stretching & Mounting.jpg" alt="Fine Art Restoration" class="w-full h-full object-cover">
                 <div class="project-overlay">
                     <span class="text-[10px] uppercase tracking-wider bg-secondary px-2 py-0.5 text-white rounded font-bold self-start mb-2">Conservation</span>
-                    <h3 class="text-2xl sm:text-3xl font-serif font-semibold text-white">19th Century Oil Painting Restoration</h3>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-medium text-white">19th Century Oil Painting Restoration</h3>
                     <p class="text-sm text-slate-200 mt-1 max-w-md">Painstakingly removed decades of discolored varnish and repaired surface craquelure to reveal the vibrant original colors beneath.</p>
                 </div>
             </div>
@@ -776,7 +787,7 @@
                 <img src="assets/gallery1.jpg" alt="Custom Framing Studio" class="w-full h-full object-cover">
                 <div class="project-overlay">
                     <span class="text-[10px] uppercase tracking-wider bg-secondary px-2 py-0.5 text-white rounded font-bold self-start mb-2">Framing</span>
-                    <h3 class="text-2xl sm:text-3xl font-serif font-semibold text-white">Museum Shadowbox</h3>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-medium text-white">Museum Shadowbox</h3>
                     <p class="text-xs text-slate-200 mt-1 max-w-xs">Created a custom depth shadowbox for an ancient artifact collection using hand-gilded wood.</p>
                 </div>
             </div>
@@ -786,7 +797,7 @@
                 <img src="assets/gallery2.jpg" alt="Matting and Mounting" class="w-full h-full object-cover">
                 <div class="project-overlay">
                     <span class="text-[10px] uppercase tracking-wider bg-secondary px-2 py-0.5 text-white rounded font-bold self-start mb-2">Mounting</span>
-                    <h3 class="text-2xl sm:text-3xl font-serif font-semibold text-white">Archival Mounting</h3>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-medium text-white">Archival Mounting</h3>
                     <p class="text-xs text-slate-200 mt-1 max-w-xs">Acid-free float mounting for delicate watercolor pieces.</p>
                 </div>
             </div>
@@ -796,7 +807,7 @@
                 <img src="assets/gallery3.jpg" alt="Gold Leaf Frame" class="w-full h-full object-cover">
                 <div class="project-overlay">
                     <span class="text-[10px] uppercase tracking-wider bg-secondary px-2 py-0.5 text-white rounded font-bold self-start mb-2">Gilding</span>
-                    <h3 class="text-2xl sm:text-3xl font-serif font-semibold text-white">Hand-Applied Gold Leafing</h3>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-medium text-white">Hand-Applied Gold Leafing</h3>
                     <p class="text-sm text-slate-200 mt-1 max-w-md">Traditional water gilding techniques applied to a bespoke ornate frame moulding.</p>
                 </div>
             </div>
@@ -809,7 +820,7 @@
     <div class="container mx-auto px-6 max-w-6xl">
         <!-- Consistent Section Heading -->
         <div class="text-center max-w-2xl mx-auto mb-16">
-            <h2 class="text-3xl sm:text-5xl font-serif font-semibold text-primary-text mb-4">Client Testimonials</h2>
+            <h2 class="text-3xl sm:text-5xl font-serif font-medium text-primary-text mb-4">Client Testimonials</h2>
             <div class="h-0.5 w-16 bg-accent mx-auto rounded-full"></div>
         </div>
 
@@ -824,14 +835,14 @@
                             EM
                         </div>
                         <div>
-                            <h4 class="text-sm font-semibold text-primary-text leading-none">Elena M.</h4>
+                            <h4 class="text-sm font-medium text-primary-text leading-none">Elena M.</h4>
                             <span class="text-[11px] text-secondary-text uppercase tracking-wider font-medium">Art Collector</span>
                         </div>
                     </div>
                     <div class="flex text-amber-500 mb-4 text-xs gap-1">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-sm text-secondary-text leading-relaxed">
+                    <p class="max-w-3xl text-sm text-secondary-text leading-relaxed">
                         "They restored a water-damaged photograph from my grandmother's collection. The result was absolutely stunning, and the custom frame perfectly complemented the era."
                     </p>
                 </div>
@@ -845,14 +856,14 @@
                             JH
                         </div>
                         <div>
-                            <h4 class="text-sm font-semibold text-white leading-none">James H.</h4>
+                            <h4 class="text-sm font-medium text-white leading-none">James H.</h4>
                             <span class="text-[11px] text-gray-200 uppercase tracking-wider font-medium">Gallery Curator</span>
                         </div>
                     </div>
                     <div class="flex text-white mb-4 text-xs gap-1">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-sm text-white leading-relaxed font-medium">
+                    <p class="max-w-3xl text-sm text-white leading-relaxed font-medium">
                         "The craftsmanship and archival attention to detail is truly unparalleled. We entrust our highest-value gallery pieces to their studio for framing. Simply the best in the region."
                     </p>
                 </div>
@@ -866,14 +877,14 @@
                             CW
                         </div>
                         <div>
-                            <h4 class="text-sm font-semibold text-primary-text leading-none">Clara W.</h4>
+                            <h4 class="text-sm font-medium text-primary-text leading-none">Clara W.</h4>
                             <span class="text-[11px] text-secondary-text uppercase tracking-wider font-medium">Interior Designer</span>
                         </div>
                     </div>
                     <div class="flex text-amber-500 mb-4 text-xs gap-1">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-sm text-secondary-text leading-relaxed">
+                    <p class="max-w-3xl text-sm text-secondary-text leading-relaxed">
                         "Their selection of mouldings is fantastic. They helped me design a gallery wall for a client that tied together various mediums seamlessly. Impeccable taste and service."
                     </p>
                 </div>
@@ -889,8 +900,8 @@
             
             <div>
                 <span class="text-accent text-xs font-bold uppercase tracking-wider block mb-2">Private Studio Appointments</span>
-                <h2 class="text-3xl sm:text-5xl font-serif font-semibold text-primary-text mb-4 leading-tight">Ready to Frame?</h2>
-                <p class="text-secondary-text text-sm leading-relaxed mb-6">
+                <h2 class="text-3xl sm:text-5xl font-serif font-medium text-primary-text mb-4 leading-tight">Ready to Frame?</h2>
+                <p class="max-w-3xl text-secondary-text text-sm leading-relaxed mb-6">
                     Contact us to schedule a private consultation. We'll discuss your artwork's specific needs, explore framing options, and provide a detailed estimate.
                 </p>
                 <img src="assets/Custom Framing.jpg" alt="Consultation Area" class="w-full h-40 object-cover rounded-xl shadow-sm mb-6">
@@ -899,14 +910,14 @@
                         <i class="fa-solid fa-phone text-sm"></i>
                     </div>
                     <div>
-                        <h4 class="text-xs font-semibold text-secondary-text uppercase tracking-wide">Studio Direct-Line</h4>
-                        <p class="text-accent font-serif font-bold text-2xl tracking-wide mt-1"><a href="tel:#" class="hover:underline">1-800-ART-FRAME</a></p>
+                        <h4 class="text-xs font-medium text-secondary-text uppercase tracking-wide">Studio Direct-Line</h4>
+                        <p class="max-w-3xl text-accent font-serif font-medium text-2xl tracking-wide mt-1"><a href="tel:#" class="hover:underline">1-800-ART-FRAME</a></p>
                     </div>
                 </div>
             </div>
 
             <div class="bg-background border border-border rounded-xl p-6 shadow-sm">
-                <h3 class="text-2xl sm:text-3xl font-serif font-semibold text-primary-text pb-2 border-b border-border mb-4">Request a Consultation</h3>
+                <h3 class="text-2xl sm:text-3xl font-serif font-medium text-primary-text pb-2 border-b border-border mb-4">Request a Consultation</h3>
                 <form class="space-y-4" onsubmit="event.preventDefault();">
                     <div>
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-secondary-text mb-1">Your Name</label>
@@ -937,7 +948,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8 pb-10 border-b border-slate-700">
                 <div class="col-span-2 md:col-span-2">
-                    <h3 class="text-2xl sm:text-2xl sm:text-3xl font-serif font-semibold mb-4 text-accent">Art & Frame</h3>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-medium mb-4 text-accent">Art & Frame</h3>
                     <p class="text-sm leading-relaxed max-w-xs text-white">Preserving and protecting your treasured artworks with museum-quality custom framing and expert art conservation services.</p>
                     <div class="flex space-x-4 rtl:space-x-reverse mt-6">
                         <a href="#" class="text-slate-300 hover:text-accent transition"><i
@@ -949,7 +960,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4 text-accent">Services</h4>
+                    <h4 class="text-lg font-medium mb-4 text-accent">Services</h4>
                     <ul class="space-y-2">
                         <li><a href="#" class="footer-link">Custom Framing</a></li>
                         <li><a href="#" class="footer-link">Art Conservation</a></li>
@@ -958,7 +969,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4 text-accent">Quick Links</h4>
+                    <h4 class="text-lg font-medium mb-4 text-accent">Quick Links</h4>
                     <ul class="space-y-2">
                         <li><a href="index.html" class="footer-link">Home</a></li>
                         <li><a href="services.html" class="footer-link">Services</a></li>
@@ -967,8 +978,8 @@
                     </ul>
                 </div>
                 <div class="col-span-2 md:col-span-2 lg:col-span-1">
-                    <h4 class="font-semibold text-lg mb-4 text-accent">Newsletter</h4>
-                    <p class="text-sm mb-4 text-white">Get art preservation tips & studio news.</p>
+                    <h4 class="font-medium text-lg mb-4 text-accent">Newsletter</h4>
+                    <p class="max-w-3xl text-sm mb-4 text-white">Get art preservation tips & studio news.</p>
                     <input type="email" placeholder="Your email"
                         class="p-3 text-sm rounded-lg w-full bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-accent text-white">
                     <button class="btn-accent font-semibold py-3 rounded-lg w-full mt-3">Subscribe</button>
