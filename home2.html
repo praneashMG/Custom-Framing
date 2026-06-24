@@ -643,18 +643,23 @@
 
         <!-- SECTION 1: HERO VIEW (Minimalist Typographic Screen) -->
         <section class="relative min-h-[85vh] flex items-center justify-center py-20 overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0 bg-black">
+                <img src="assets/art_restoration.png" alt="Background" class="w-full h-full object-cover opacity-50">
+                <div class="absolute inset-0 bg-black/50 pointer-events-none"></div>
+            </div>
             <div id="particles" class="particle-bg"></div>
 
             <div class="container mx-auto px-6 relative z-10 text-center max-w-5xl">
                 <span
-                    class="text-accent text-xs font-bold uppercase tracking-widest bg-hover border border-border px-4 py-1.5 rounded-full inline-block mb-6">
+                    class="text-accent text-xs font-bold uppercase tracking-widest bg-black/30 backdrop-blur-sm border border-white/20 text-white px-4 py-1.5 rounded-full inline-block mb-6">
                     <i class="fa-solid fa-paintbrush text-xs mr-1 text-accent"></i> Museum Quality Preservation
                 </span>
                 <h1
-                    class="text-4xl sm:text-6xl font-serif font-medium text-primary-text tracking-tight max-w-4xl mx-auto mb-6 leading-[1.15]">
+                    class="text-4xl sm:text-6xl font-serif font-medium text-white tracking-tight max-w-4xl mx-auto mb-6 leading-[1.15] drop-shadow-md">
                     Expert Custom Framing & Fine Art Conservation
                 </h1>
-                <p class="text-base sm:text-lg text-secondary-text max-w-2xl mx-auto mb-10 leading-relaxed">
+                <p class="text-base sm:text-lg text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow">
                     Elevate your cherished artworks with our premium framing solutions. Our master conservators ensure your pieces are protected and beautifully presented for generations.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -671,7 +676,7 @@
         </section>
 
         <!-- SECTION 2: METRICS BAR (Dark Theme Grid) -->
-        <section class="py-16 bg-secondary text-white transition-colors duration-300">
+        <section class="py-16 bg-neutral-900 text-white transition-colors duration-300">
             <div class="container mx-auto px-6 max-w-6xl">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center items-start text-center">
                     <div class="reveal">
